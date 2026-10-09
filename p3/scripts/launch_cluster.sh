@@ -1,6 +1,6 @@
 #!/bin/bash
 
-k3d cluster create 42cluster --servers 1 --agents 1 -p "8888:80@loadbalancer"
+k3d cluster create 42cluster --servers 1 -p "8888:80@loadbalancer"
 kubectl get nodes -o wide
 
 kubectl create namespace argocd
