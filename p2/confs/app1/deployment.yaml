@@ -1,0 +1,22 @@
+apiVersion : apps/v1
+kind: Deployment    #kubectl explain deployment run la cmd pour voir quoi mettre ici
+metadata:
+  name: app1        #son nom
+spec:         
+  replicas: 1       #les repliques, le nombre de pods qui tourne
+  selector:         
+    matchLabels:    #pour que le deployment sache a quel pod il appartient faut mettre le nom
+      app: app1
+  template:         #c'est la que commence le blueprint pour chaque pod
+    metadata:
+      labels:
+        app: app1   # mettre le match label
+    spec:           
+      containers:
+        - name: app1
+          image: hashicorp/http-echo:1.0    #l'image a choper sur dockerhub
+          args:
+            - "-text=HEYOW from app1"
+            - "-listen=:2222"
+          ports:
+            - containerPort: 2222 
