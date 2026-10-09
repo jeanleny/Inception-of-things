@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitlab
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - name: gitlab
+        image: gitlab/gitlab-ce:latest
+        # Désactivation des modules inutiles pour économiser la RAM
+        env:
+        - name: GITLAB_OMNIBUS_CONFIG
+          value: |
+            external_url 'http://gitlab.127.0.0.1.nip.io'
+            nginx['listen_port'] = 80
+            nginx['listen_https'] = false
+            prometheus['enable'] = false
+            grafana['enable'] = false
+            alertmanager['enable'] = false
+            gitlab_kas['enable'] = false
+        ports:
+        - containerPort: 80
+        # GitLab Omnibus nécessite au minimum 3 à 4 Go de RAM pour démarrer
+        resources:
+          requests:
+            memory: "3Gi"
+            cpu: "1"
+          limits:
+            memory: "4Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-svc
+  namespace: gitlab
+spec:
+  selector:
+    app: gitlab
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gitlab-ingress
+  namespace: gitlab
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: gitlab.127.0.0.1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gitlab-svc
+            port:
+              number: 80

@@ -4,6 +4,7 @@
 ./scripts/install/k3d.sh
 ./scripts/install/CLIargoCD.sh
 ./scripts/install/docker.sh
+./scripts/install/helm.sh
 
 ./scripts/launch_cluster.sh
 
