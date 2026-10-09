@@ -5,4 +5,4 @@ argocd app create wil42 \
   --path wil42_demo \
   --sync-policy automated \
   --dest-server https://kubernetes.default.svc \
-  --dest-namespace default   
+  --dest-namespace dev
