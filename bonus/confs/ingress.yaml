@@ -3,10 +3,16 @@ kind: Ingress
 metadata:
   name: network
 spec:
-  host: test.com
   rules:
     http:
       paths:
+      - path: /wil
+        pathType: Prefix
+        backend:
+          service:
+            name: wil
+            port:
+              number: 8888
       - path: /gitlab
         pathType: Prefix
         backend:
@@ -14,10 +20,3 @@ spec:
             name: gitlab-svc
             port:
               number: 8088
-        path: /wil
-        pathType: Prefix
-        backend:
-          service:
-            name: wil
-            port:
-              number: 8888

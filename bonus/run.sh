@@ -9,7 +9,6 @@
 ./scripts/launch_cluster.sh
 
 ./scripts/launch_argocd.sh
-./scripts/launch_gitlab.sh
 
 kubectl apply -f ./confs/ingress.yaml
 
