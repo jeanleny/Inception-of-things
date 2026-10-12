@@ -1,7 +1,7 @@
 #!/bin/bash
 
 argocd app create wil42 \
-  --repo https://github.com/blanchetamaury/IOT_image \
+  --repo http://localhost:8088/laq/iot \
   --path wil42_demo \
   --sync-policy automated \
   --dest-server https://kubernetes.default.svc \
