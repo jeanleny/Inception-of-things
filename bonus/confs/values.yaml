@@ -23,10 +23,10 @@ spec:
             external_url 'http://gitlab.127.0.0.1.nip.io'
             nginx['listen_port'] = 80
             nginx['listen_https'] = false
-            prometheus['enable'] = false
-            grafana['enable'] = false
-            alertmanager['enable'] = false
             gitlab_kas['enable'] = false
+            puma['worker_processes'] = 0
+            sidekiq['max_concurrency'] = 5
+            postgresql['shared_buffers'] = "128MB"
         ports:
         - containerPort: 80
         # GitLab Omnibus nécessite au minimum 3 à 4 Go de RAM pour démarrer
