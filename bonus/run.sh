@@ -12,4 +12,5 @@
 
 kubectl apply -f ./confs/ingress.yaml
 
-./scripts/create_application.sh
+./scripts/create_application_gitlab.sh
+./scripts/create_application_wil.sh
