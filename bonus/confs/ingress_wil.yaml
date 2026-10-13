@@ -1,9 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wil-ingress
+  name: wil
   namespace: dev
 spec:
+  ingressClassName: traefik
   rules:
   - http:
       paths:

@@ -17,7 +17,7 @@ echo "Pour l'arrêter : kill $PF_PID"
 
 until curl -ksf http://127.0.0.1:8088 >/dev/null; do sleep 1; done
 
-#GITLAB_PASSWORD=$(kubectl exec deployment/gitlab -n gitlab -- grep 'Password:' /etc/gitlab/initial_root_password | awk '{print $2}')
+GITLAB_PASSWORD=$(kubectl exec deployment/gitlab -n gitlab -- grep 'Password:' /etc/gitlab/initial_root_password | awk '{print $2}')
 
 kubectl exec deployment/gitlab -n gitlab -- gitlab-rails runner "
 user = User.find_by_username('root')
