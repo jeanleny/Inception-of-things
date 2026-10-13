@@ -1,19 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: network
+  name: gitlab-ingress
+  namespace: gitlab
 spec:
   rules:
-    http:
+  - host: gitlab.localhost
+  - http:
       paths:
-      - path: /wil
-        pathType: Prefix
-        backend:
-          service:
-            name: wil
-            port:
-              number: 8888
-      - path: /gitlab
+      - path: /
         pathType: Prefix
         backend:
           service:

@@ -10,7 +10,8 @@
 
 ./scripts/launch_argocd.sh
 
-kubectl apply -f ./confs/ingress.yaml
-
+kubectl apply -f ./confs/ingress_gitlab.yaml
 ./scripts/create_application_gitlab.sh
+
+kubectl apply -f ./confs/ingress_wil.yaml
 ./scripts/create_application_wil.sh
