@@ -7,6 +7,7 @@ if command -v k3d >/dev/null 2>&1; then
 else
     echo "k3d is not installed"
     curl -sSfL https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=${K3D_VERSION} bash
+    
     k3d version
     echo "k3d has been installed"
 fi
