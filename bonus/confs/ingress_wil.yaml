@@ -7,10 +7,10 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /wil
         pathType: Prefix
         backend:
           service:
             name: wil
             port:
-              number: 8088
+              number: 8888
