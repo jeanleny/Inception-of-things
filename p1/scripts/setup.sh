@@ -11,7 +11,15 @@ else
 	echo installation went well
 fi
 
-sudo apt install virtualbox-7.2
+sudo apt install -y gnupg
+curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc \
+  | sudo gpg --dearmor --yes -o /usr/share/keyrings/oracle-virtualbox-2016.gpg
+
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian trixie contrib" \
+  | sudo tee /etc/apt/sources.list.d/virtualbox.list
+
+sudo apt update
+sudo apt install -y virtualbox-7.2
 
 sudo apt update
 sudo apt install cockpit cockpit-machines
