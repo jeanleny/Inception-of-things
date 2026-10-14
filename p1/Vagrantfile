@@ -1,6 +1,7 @@
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 Vagrant.configure("2") do |config|
+  user=`whoami`.strip
 
   config.vm.box = "debian/bookworm64"
   config.vm.synced_folder ".", "/vagrant", disabled: false
@@ -10,10 +11,10 @@ Vagrant.configure("2") do |config|
       vb.memory = 1024
       vb.cpus = 1
     end
-    server.vm.hostname = "lperisS"
+    server.vm.hostname = "#{user}S"
     server.vm.network "private_network", ip: "192.168.56.110"
-   
-    server.vm.provision "file", source: "~/Inception-of-things/p1/confs/config.yaml", destination: "/tmp/config.yaml"
+    path = Dir.pwd 
+    server.vm.provision "file", source: "#{path}/confs/config.yaml", destination: "/tmp/config.yaml"
     server.vm.provision "shell", name: "init-server", path: "./scripts/init-server.sh"
   end
 
@@ -22,7 +23,7 @@ Vagrant.configure("2") do |config|
       vb.memory = 1024
       vb.cpus = 1
     end
-    worker.vm.hostname = "lperisSW"
+    worker.vm.hostname = "#{user}SW"
     worker.vm.network "private_network", ip: "192.168.56.111"
 
     worker.vm.provision "shell", name: "init-worker", path: "./scripts/init-worker.sh"

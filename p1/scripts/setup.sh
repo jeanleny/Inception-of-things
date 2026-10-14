@@ -11,8 +11,10 @@ else
 	echo installation went well
 fi
 
+sudo apt install virtualbox-7.2
+
 sudo apt update
 sudo apt install cockpit cockpit-machines
-vagrant init generic/debian10
+sudo modprobe -r kvm_intel
+sudo modprobe -r kvm
 vagrant up
-vagrant ssh
