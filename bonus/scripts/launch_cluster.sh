@@ -9,6 +9,8 @@ kubectl create namespace dev
 kubectl apply -n argocd --server-side --force-conflicts \
   -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.4.5/manifests/install.yaml
 
+# Helm traefik
+
 helm repo add traefik https://helm.traefik.io/traefik
 helm repo update
 helm upgrade --install traefik traefik/traefik \
@@ -16,13 +18,12 @@ helm upgrade --install traefik traefik/traefik \
   --set global.hosts.domain=traefik-demo42.com \
   --set global.hosts.externalIP=192.168.56.114 \
 
+# Helm gitlab
+
 helm repo add gitlab https://charts.gitlab.io/
 helm repo update
 helm upgrade --install gitlab -n gitlab gitlab/gitlab \
   --timeout 600s \
   --set global.hosts.domain=gitlab-demo42.com \
   --set global.hosts.externalIP=192.168.56.113 \
-  --set certmanager-issuer.email=me@example.com
-
-
-  # --set certmanager-issuer.email=me@example.com
+  --set certmanager-issuer.email=me@example.com \

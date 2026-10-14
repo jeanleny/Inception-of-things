@@ -6,3 +6,5 @@ argocd app create wil42 \
   --sync-policy automated \
   --dest-server https://kubernetes.default.svc \
   --dest-namespace dev
+
+kubectl apply -f ./confs/ingress.yaml
