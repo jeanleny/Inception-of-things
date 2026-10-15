@@ -45,4 +45,7 @@ rm -f /tmp/argocd-pf.log
 echo "[7/7] Nettoyage Docker..."
 docker system prune -f 2>/dev/null || true
 
+sudo docker rmi -f ghcr.io/k3d-io/k3d-proxy:5.9.0 ghcr.io/k3d-io/k3d-tools:5.9.0 rancher/k3s:v1.35.5-k3s1
+
+
 echo "=== Terminé ==="
