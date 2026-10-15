@@ -4,6 +4,7 @@ metadata:
   name: wil
   namespace: dev
 spec:
+  ingressClassName: traefik
   rules:
   - http:
       paths:

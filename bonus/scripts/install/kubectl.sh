@@ -8,5 +8,5 @@ else
 	chmod +x ./kubectl
 	sudo mv ./kubectl /usr/local/bin/kubectl
 	kubectl version --client
-	echo "kubctl has been successfully installed"
+echo "kubctl has been successfully installed"
 fi
