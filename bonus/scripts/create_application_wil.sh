@@ -1,7 +1,7 @@
 #!/bin/bash
 
 argocd app create wil42 \
-  --repo http://gitlab-svc.gitlab.svc.cluster.local:8088/root/wil42.git \
+  --repo https://github.com/blanchetamaury/IOT_image \
   --path wil42_demo \
   --sync-policy automated \
   --dest-server https://kubernetes.default.svc \
