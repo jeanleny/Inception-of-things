@@ -1,4 +1,3 @@
-bash 
 #!/bin/bash
 # uninstall.sh - Désinstallation totale : app, ArgoCD, cluster k3d, outils
 
