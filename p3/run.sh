@@ -9,6 +9,4 @@
 
 ./scripts/launch_argocd.sh
 
-kubectl apply -f ./confs/ingress.yaml
-
 ./scripts/create_application.sh
